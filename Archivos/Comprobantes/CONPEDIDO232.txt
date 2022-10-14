@@ -1,0 +1,15 @@
+Desde el día miércoles 17/08 que hubo un corte de luz/bajada de tensión en Quinpe, el servidor HP Proliant DL 320e que es el más antiguo que tiene Quinpe en servicio, presenta falla en uno de sus coolers. Hoy fuí a la empresa a las 06 AM para realizar diagnósticos varios, y estaba en falla. Se restableció e hice un bypass de la falla para que no afecte la operación, pero cuando me fuí a las 10am volvió a incidentarse.
+Esta falla provoca que el servidor se apague o se reinicie impredeciblemente, en cualquier horario.
+
+Cuando se reinicia en horarios de trabajo, se pierden los siguientes servicios críticos:
+Acceso al servidor de archivos "Público"
+Acceso al servicio Cronos 21 (el fichador de ingreso) por parte de RR.HH
+Acceso a Nexion por parte de Mariano Silka y el contador de Roca.
+Ya programé hacer un servicio completo a todo el rack de servidores, pero el cooler de este servidor hay que reemplazarlo sí o sí.
+Para que tengan una idea, el valor ronda los $30.000. Lo puedo proveer en cta. cte a 30 días. Recomiendo también agregar una memoria RAM de 4gb para servidor, cuyo valor es similar al del cooler, ya que el server tiene instalados actualmente sólo 4gb.
+
+Por favor evaluar comprar el cooler y la ram o al menos el cooler y avisarme.
+
+Adjunto queda una captura de pantalla con el diagnóstico de falla: (en la parte inferior de la captura se lee el informe de error: "The fan subsystem is in a failed state - Replace the fan").
+
+Saludos cordiales.

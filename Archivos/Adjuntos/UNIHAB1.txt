@@ -1,0 +1,99 @@
+$_SESSION['GLO_msgC']=$query;
+$_SESSION['GLO_msgE']=$_SESSION['GLO_msgE'].'. Verifique que Razon Social y CUIT no esten repetidos';
+
+GLO_Hidden('TxtId',0);
+
+GLO_CmdAdd('CmdAddLoc',0,0);
+
+//get (seguridad)
+GLO_ValidaGET($_GET['id'],0,0);
+GLO_ValidaGETCLOSE($_GET['id'],0,0);
+
+////////////////////////////////////////////////////////////////////////
+
+GLOF_Init('TxtNombre','BannerConMenuHV','zAlta',0,'',0,0,0); 
+<link rel="STYLESHEET" type="text/css" href="../CSS/Estilo.css" >
+<link rel="STYLESHEET" type="text/css" href="CSS/Estilo.css" >
+
+////////////////////////////////////////////////////////////////////////
+
+GLO_FAButton('CmdExcel','submit','80','self','Exportar','excel','boton02');
+
+<i class="fa fa-bars iconsmallsp iconlgray"></i>
+<i class="fa fa-truck iconsmallsp iconlgray"></i>
+<i class="fa fa-comments iconsmallsp iconlgray"></i> 
+<i class="fa fa-phone iconsmallsp iconlgray"></i> 
+<i class="fa fa-money-bill iconsmallsp iconlgray"></i>
+<i class="fa fa-money-check iconsmallsp iconlgray"></i>
+<i class="fa fa-shopping-cart iconsmallsp iconlgray"></i>
+<i class="fa fa-award iconsmallsp iconlgray"></i>
+<i class="fa fa-chart-bar iconsmallsp iconlgray"></i>
+<i class="fa fa-address-card iconsmallsp iconlgray"></i> 
+<i class="fa fa-folder-open iconsmallsp iconyellow"></i>
+<i class="fa fa-user-tie iconsmallsp iconlgray"></i>
+<i class="fa fa-file-alt iconsmallsp iconlgray"></i>
+<i class="fa fa-notes-medical iconsmallsp iconlgray"></i>
+clipboard-check
+file-signature
+birthday-cake
+traffic-light
+question-circle
+map-signs
+sign
+binoculars
+times
+check
+archive(historico cmit)
+chalkboard
+camera
+
+////////////////////////////////////////////////////////////////////////
+
+type="button" onClick="window.location.href='StockP.php';" //self
+type="button" onClick="window.open('StockP.php');" //blank
+
+
+GLO_linkbutton(750,'Agregar','Alta.php','','','','');
+GLOF_buttonpanel('boton9','DEPOSITOS','../Depositos.php',0,0,0)
+
+////////////////////////////////////////////////////////////////////////
+
+
+$tablaclientes .=GLO_inittabla(970,1,0,0);// TableShowT	TableShowD
+$tablaclientes .=GLO_inittabla(970,0,0,0);
+$tablaclientes .=GLO_fintabla(1,0,$recuento);
+
+$tablaclientes .='<table width="960" class="TableShow" id="tshow"><tr>';
+
+$tablaclientes .='<tr '.$estilo.GLO_highlight($row['Id']).'>';
+
+
+////////////////////////////////////////////////////////////////////////
+
+GLO_initcomment(970,0);
+echo '';
+GLO_endcomment();
+
+
+GLO_obsform(730,100,'Observaciones','TxtObs',1,0);////$tipo=0 text,$tipo=1 char max 200,$tipo=2 char max 100
+
+GLO_exportarform(700,1,0,0,0,0);//excel,excel2,print,send
+
+GLO_botonesform("700",0,0);//1: 'Guardar' (0 muestra,1 oculta),2: 'Cerrar' (0 muestra,1 close, 2 oculta)
+
+$nroId=GLO_generoID("solicitudes",$conn);
+$idpadre=intval($idpadre);
+
+<? GLO_keypress(0);?>
+
+/////////////////////////////////
+//mostrar campos
+if ($_GET['gidf']!=1){	
+gidf=1&id
+//en true no va nada, en false 1
+gid,gidp
+
+//////
+return confirm('."'Eliminar'".');">';
+
+/////

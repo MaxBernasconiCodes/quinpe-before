@@ -1,0 +1,358 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!-- saved from url=(0069)http://quinpe.com/Intranet/ISOMinutas/Modificar.php?id=160&Flag1=True -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Intranet</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+<link rel="icon" href="http://quinpe.com/Intranet/favicon.ico" type="image/x-icon"><link rel="shortcut icon" href="http://quinpe.com/Intranet/favicon.ico" type="image/x-icon"><link href="./MINUTA_files/calendar.css" rel="stylesheet" type="text/css"><script language="javascript" src="./MINUTA_files/calendar.js.descarga"></script><script type="text/javascript" src="./MINUTA_files/jquery.js.descarga"></script><script type="text/javascript" src="./MINUTA_files/maskedinput.js.descarga"></script><link rel="STYLESHEET" type="text/css" href="./MINUTA_files/all.css"><link rel="stylesheet" type="text/css" href="./MINUTA_files/css"><link href="./MINUTA_files/css(1)" rel="stylesheet">
+
+
+<script type="text/javascript">
+
+/* hora */
+$(document).ready(function() { $("input[type=text][id*=time]").mask("99:99");});
+$(document).ready(function() { $("input[type=text][id*=date]").mask("99-99-9999");});
+
+
+function validarEnteroCompletar(valor,ceros,cant){
+	valor = parseInt(valor,10);
+	if (isNaN(valor) ) {
+		alert('Por favor ingresar un numero entero') 
+		valor="";
+	}else{
+		valor=String(ceros + valor).slice(cant);		
+	}
+	return valor
+}
+
+function validarMoneda(valor){
+	var re=/^(\d{1,3}.)*\d{1,3}(\,\d+)?$/;
+	if (re.test(valor)) return valor
+	else{
+		alert('Por favor utilice el formato 1.000,00') 
+		return ""
+	}
+}
+
+
+function validarEntero(valor){
+	valor = parseInt(valor,10);
+	if (isNaN(valor)  ) {
+		/* alert('Por favor ingresar un numero entero') */
+		return ""
+	}else{
+		return valor
+	}
+
+}
+
+function validarNumero(valor){
+	if (isNaN(valor)  ) {
+		/* alert('Por favor ingresar un numero') */
+		return ""
+	}else{
+		return valor
+	}
+}
+
+function validarNumeroP(valor){/* decimal positivo */
+	if ( isNaN(valor) || valor<0 ) {
+		/* alert('Por favor ingresar un numero') */
+		return ""
+	}else{
+		return valor
+	}
+}
+
+function validarNumeroR(valor){/* reemplaza la coma por el punto */
+	valor = valor.replace(',','.');
+	if (isNaN(valor) ) {
+		return ""
+	}else{
+		return valor
+	}
+}
+
+
+function OverRow(n,valor){	
+		var elemento = document.getElementById(n);
+		if(valor==1){elemento.style.fontWeight="bold";}else{elemento.style.fontWeight="normal";} 	
+} 
+
+/* funciones para seleccionar con color filas checked  */
+function CheckRowShadow(n,valor){	
+		var elemento = document.getElementById(n);
+		if(valor==1){elemento.style.backgroundColor="#e9efef";elemento.style["boxShadow"] = "0 0 5px #999999";}
+		else{elemento.style.backgroundColor="#ffffff";elemento.style["boxShadow"] = "none";} 	
+} 
+
+function CheckRow(n,valor){	
+		var elemento = document.getElementById(n);
+		if(valor==1){elemento.style.backgroundColor="#e9efef";}else{elemento.style.backgroundColor="#ffffff";} 	
+} 
+function CheckTableRow(n,valor){
+	for (var i=1;i < document.getElementById(n).rows.length;i++){	
+		var elemento = document.getElementById(n).rows[i];
+		if(valor==1){elemento.style.backgroundColor="#e9efef";}else{elemento.style.backgroundColor="#ffffff";} 	
+	}
+} 
+function CheckMasivoColor(){	
+	for (var i=0;i < document.Formulario.elements.length;i++){
+		var elemento = document.Formulario.elements[i];
+		if (elemento.type == "checkbox" && elemento.id!="ro"){
+			elemento.checked = document.Formulario.ChkAll.checked;
+			if (elemento.checked==1) {elemento.value=1;}else{elemento.value=0;}
+			
+		}
+	}
+	CheckTableRow("tshow",document.Formulario.ChkAll.value);	
+} 
+
+
+
+
+/* para pagina con dos tablas primer tabla */
+function CheckMasivoC1(){	
+	for (var i=0;i < document.Formulario.elements.length;i++){
+		var elemento = document.Formulario.elements[i];
+		if (elemento.type == "checkbox" && elemento.id=="c1"){
+			elemento.checked = document.Formulario.ChkAll1.checked;
+			if (elemento.checked==1) {elemento.value=1;}else{elemento.value=0;}
+			
+		}
+	}
+} 
+/* para pagina con dos tablas segunda tabla */
+function CheckMasivoC2(){	
+	for (var i=0;i < document.Formulario.elements.length;i++){
+		var elemento = document.Formulario.elements[i];
+		if (elemento.type == "checkbox" && elemento.id=="c2"){
+			elemento.checked = document.Formulario.ChkAll2.checked;
+			if (elemento.checked==1) {elemento.value=1;}else{elemento.value=0;}
+			
+		}
+	}
+} 
+
+
+function CheckMasivo(){	
+	for (var i=0;i < document.Formulario.elements.length;i++){
+		var elemento = document.Formulario.elements[i];
+		if (elemento.type == "checkbox"){elemento.checked = document.Formulario.ChkAll.checked;elemento.value = document.Formulario.ChkAll.value;}
+	}
+} 
+
+function CheckMasivo2(){	
+	for (var i=0;i < document.Formulario.elements.length;i++){
+		var elemento = document.Formulario.elements[i];
+		if (elemento.type == "checkbox"  && elemento.id == "5"){elemento.checked = document.Formulario.ChkAll.checked;elemento.value = document.Formulario.ChkAll.value;}
+	}
+} 
+
+function CheckMasivo5(){	
+	for (var i=0;i < document.Formulario.elements.length;i++){
+		var elemento = document.Formulario.elements[i];
+		if (elemento.type == "checkbox" && elemento.id!="ro"){
+			elemento.checked = document.Formulario.ChkAll.checked;
+			if (elemento.checked==1) {elemento.value=1;}else{elemento.value=0;};
+		}
+	}
+} 
+
+
+
+
+function enterxtab(e) {
+	if (e.keyCode==13){e.keyCode=9}	
+}
+
+
+function validarFecha(Cadena){  
+	Cadena = Cadena.replace(/\//g,'-');//reemplaza 'barra' por 'guion'
+	if (Cadena!=""){
+		 var Fecha= new String(Cadena)   
+		 var RealFecha= new Date()  
+	  
+	  	if (Fecha.lastIndexOf("-")>0){
+			 var Anio= new String(Fecha.substring(Fecha.lastIndexOf("-")+1,Fecha.length))   
+			 var Mes= new String(Fecha.substring(Fecha.indexOf("-")+1,Fecha.lastIndexOf("-")))  
+			 var Dia= new String(Fecha.substring(0,Fecha.indexOf("-"))) 
+		 }else{		  
+			 var Anio= new String(Fecha.substring(4)) 
+			 var Mes= new String(Fecha.substring(2,4))
+			 var Dia= new String(Fecha.substring(0,2))
+		}
+
+		 if (isNaN(Anio) || (Anio.length<4) || (parseFloat(Anio)<1900) || (Anio=='')){  
+			 alert('Por favor ingresar formato ddmmyyyy')  
+			 return ""  
+		 }  
+	 
+		 if (isNaN(Mes) || parseFloat(Mes)<1 || parseFloat(Mes)>12 || (Mes=='')){  
+			 alert('Por favor ingresar formato ddmmyyyy')  
+			 return ""  
+		 }  
+	
+		 if (isNaN(Dia) || parseInt(Dia, 10)<1 || parseInt(Dia, 10)>31  || (Anio=='')){  
+			 alert('Por favor ingresar formato ddmmyyyy')  
+			 return ""  
+		 }  
+		 if (Mes==4 || Mes==6 || Mes==9 || Mes==11) {  
+			 if (Dia>30) {  
+				 alert('Por favor ingresar formato ddmmyyyy')  
+				 return ""  
+			 }  
+		 } 
+		 if (Mes==2) {  
+			 if (Dia > 29) {  
+				 alert('Por favor ingresar formato ddmmyyyy')  
+				 return ""  
+			 } 
+			 if ((Anio % 4 == 0) && ((Anio % 100 != 0) || (Anio % 400 == 0))){var Bisiesto=1;}else{var Bisiesto=0;}		
+			 if (Dia == 29 && Bisiesto==0) {  
+				 alert('Por favor ingresar formato ddmmyyyy')  
+				 return ""  
+			 } 
+		 } 
+		 	 
+		 
+		  
+		return Dia + "-" + Mes + "-" + Anio
+	}
+	else{
+		return ""
+	}
+ }  
+
+
+
+
+
+function validarHora(Cadena){//hora:minutos  
+	if (Cadena!=""){
+		 var Hora= new String(Cadena) 
+		 var hh= new String(Hora.substring(0,2)) 
+		 var div= new String(Hora.substring(2,3))    
+		 var mm= new String(Hora.substring(3,5))  
+
+		 if (isNaN(hh) || isNaN(mm) || hh<0 || hh>23 || mm<0 || mm>59 || (div!=':')){  
+			 alert('Por favor ingresar formato hh:mm')  
+			 return ""  
+		 }
+		 return Cadena
+	}
+	else{
+		return ""
+	}
+ } 
+ 
+
+
+</script><link rel="STYLESHEET" type="text/css" href="./MINUTA_files/Estilo.css"></head><body leftmargin="0" height="100%" topmargin="0" marginwidth="0" marginheight="0" onload="document.forms[&#39;Formulario&#39;][&#39;TxtFecha&#39;].focus()" style="">
+<!--banner-->
+<table height="100%" width="100%" cellpadding="0" cellspacing="0" border="0" align="center" class="fondo">
+<tbody><tr> <td height="1px" style="width:30%"> </td><td style="width:70%;"></td></tr>
+<tr class="bannerIMG2"> <td class="bannerintra banner"></td><td class="banner"> 
+
+<a href="http://quinpe.com/Intranet/Inicio.php"><i class="fa fa-home iconvsmall"></i> Inicio </a>&nbsp; &nbsp; &nbsp; &nbsp;<a href="http://quinpe.com/Intranet/CambioClave.php"><i class="fa fa-key iconvsmall"></i> Clave </a>&nbsp; &nbsp; &nbsp; &nbsp;<a href="http://quinpe.com/Intranet/InicioIntranet.php"><i class="fa fa-sitemap iconvsmall"></i> Intranet </a>&nbsp; &nbsp; &nbsp; &nbsp;<a href="http://quinpe.com/Intranet/Codigo/Logout.php"><i class="fa fa-sign-out-alt iconvsmall"></i> Salir </a>&nbsp;
+</td></tr>
+
+
+
+
+
+<!--cuerpo-->
+<tr> <td colspan="2" width="100%" height="100%" align="center" valign="top">
+<table width="100%" height="100%" cellpadding="0" cellspacing="0" border="0" align="center"><tbody><tr height="100%">
+<script language="javascript">
+function items(id){
+	var obj = document.getElementById('ul' + id)
+	if(obj.style.display == 'block') obj.style.display = 'none'
+	else obj.style.display = 'block'  
+}
+function ocultaItems(){
+	listado = document.getElementById('listaUls')
+	contenedores = listado.getElementsByTagName('ul')
+	numContenedores = contenedores.length
+	for(m=0; m < numContenedores; m++){
+	if(contenedores[m].id.indexOf('ul') == 0)
+	contenedores[m].style.display = 'none'     }  
+}  
+</script>
+
+<td height="100%" valign="top" class="estilomenu" style="width:1.8rem"> 
+<!--menu-->
+<table height="100%" border="0" cellspacing="0" cellpadding="0" valign="top">
+<tbody><tr> <td style="height:1.8rem"></td> </tr>
+<tr><td valign="top">		
+<div id="menuv">
+<ul id="listaUls">
+
+<li id="items">  <a href="http://quinpe.com/Intranet/ISO_Auditorias.php">&nbsp;&nbsp;AUDITORIAS</a> </li><li id="items">  <a href="http://quinpe.com/Intranet/ISO_Cambios.php">&nbsp;&nbsp;CAMBIOS</a> </li><li id="items">  <a href="http://quinpe.com/Intranet/ISO_Doc.php">&nbsp;&nbsp;DOCUMENTOS</a> </li><li id="items">  <a href="http://quinpe.com/Intranet/ISO_Anexos.php">&nbsp;&nbsp;EXTERNOS</a> </li><li id="items">  <a href="http://quinpe.com/Intranet/ISO_NC.php">&nbsp;&nbsp;NO CONFORM.</a> </li><li id="items">  <a href="http://quinpe.com/Intranet/ISO_MLegal.php">&nbsp;&nbsp;MATRIZ LEGAL</a> </li><li id="items">  <a href="http://quinpe.com/Intranet/ISO_Minutas.php">&nbsp;&nbsp;MINUTAS</a> </li><li id="items">  <a href="http://quinpe.com/Intranet/ISO_Planes.php">&nbsp;&nbsp;PLANES</a> </li><li id="items">  <a href="http://quinpe.com/Intranet/ISOProgramas/Consulta.php">&nbsp;&nbsp;PROGRAMAS</a> </li><li id="items" style="border-top:1px solid #dedede;margin-right:6px;">  <a href="http://quinpe.com/Intranet/ISO_Tablas.php">&nbsp;&nbsp;TABLAS</a> </li>
+</ul>
+<script type="text/javascript">
+ocultaItems()
+</script>
+</div>
+</td></tr>
+</tbody></table>
+<!--fin menu-->
+
+</td>
+<td style="width:1.8rem" class="fondo">&nbsp; </td><td align="center" height="100%" valign="top" class="fondo"><form name="Formulario" action="http://quinpe.com/Intranet/ISOMinutas/zModificar.php" method="post"><table width="750" border="0" cellpadding="0" cellspacing="0" class="fondo" style="padding-top:1rem;"><tbody><tr> <td width="30%"></td><td align="center" valign="bottom" class="Titulo" width="40%">MINUTA DE REUNION</td><td width="30%" align="right"><i class="fas fa-arrow-left iconmedium iconlgray" onclick="document.Formulario.target=&#39;_self&#39;;window.location.href=&#39;../ISO_Minutas.php&#39;"></i></td></tr><tr> <td style="height:0.4rem;"></td></tr></tbody></table> 
+
+
+
+
+<link rel="STYLESHEET" type="text/css" href="./MINUTA_files/Estilo(1).css">
+
+<table width="750" border="0" cellspacing="0" class="Tabla">
+
+<tbody><tr><td width="70" height="3"></td><td width="110"></td><td width="140"></td><td width="130"></td><td width="100"></td><td width="150"></td></tr>
+
+<tr> <td align="right" height="18">Fecha:</td><td>&nbsp;<input name="TxtFecha" id="TxtFecha" type="text" class="TextBox" style="width:65px" maxlength="10" tabindex="1" onchange="this.value=validarFecha(this.value);" value="29-08-2022"><input type="hidden" name="TxtFecha_dp" id="TxtFecha_dp" value="1"><input type="hidden" name="TxtFecha_year_start" id="TxtFecha_year_start" value="2000"><input type="hidden" name="TxtFecha_year_end" id="TxtFecha_year_end" value="2030"><input type="hidden" name="TxtFecha_mon" id="TxtFecha_mon" value=""><input type="hidden" name="TxtFecha_da1" id="TxtFecha_da1" value="2000-01-01"><input type="hidden" name="TxtFecha_da2" id="TxtFecha_da2" value="2030-01-01"><input type="hidden" name="TxtFecha_sna" id="TxtFecha_sna" value="1"><input type="hidden" name="TxtFecha_aut" id="TxtFecha_aut" value=""><input type="hidden" name="TxtFecha_frm" id="TxtFecha_frm" value=""><input type="hidden" name="TxtFecha_tar" id="TxtFecha_tar" value=""><input type="hidden" name="TxtFecha_inp" id="TxtFecha_inp" value=""><input type="hidden" name="TxtFecha_fmt" id="TxtFecha_fmt" value="j F Y"> <a href="javascript:toggleCalendar(&#39;div_TxtFecha&#39;);"><img src="./MINUTA_files/calendario.png" id="tcbtn_TxtFecha" name="tcbtn_TxtFecha" border="0" align="absmiddle"></a><div id="div_TxtFecha" style="position: relative;display:none;z-index:10000;"><iframe id="TxtFecha_frame" style="DISPLAY:block; LEFT:0px; POSITION:absolute; TOP:0px;" src="./MINUTA_files/calendar_form.html" frameborder="0" scrolling="no" height="205" width="150" allowtransparency="true"></iframe></div></td><td>&nbsp;<input name="TxtHora1" id="time" type="text" class="TextBox" style="width:50px" maxlength="5" value="09:00" onchange="this.value=validarHora(this.value);" tabindex="1"><label class="MuestraError"> * </label></td><td></td><td align="right"></td><td></td></tr>
+
+<tr> <td align="right" height="18">Tema:</td><td colspan="5">&nbsp;<input name="TxtNombre" type="text" class="TextBox" tabindex="1" style="width:600px" maxlength="100" value="PDA, NC Nro 51"> <label class="MuestraError"> * </label></td></tr>
+
+</tbody></table>
+
+
+
+<input name="TxtId" type="hidden" value=""><input name="TxtNumero" type="hidden" value="00160"><table width="750" border="0" cellspacing="0" class="Tabla TMT"><tbody><tr> <td height="5"></td></tr><tr><td height="18" align="center"><input name="CmdAceptar" type="submit" class="boton" value="Guardar" onclick="document.Formulario.target=&#39;_self&#39;"></td> </tr></tbody></table><table width="750" border="0" cellpadding="0" cellspacing="0"><tbody><tr> <td height="3"></td></tr><tr><td align="right"> <button name="CmdExcel" type="submit" class="boton02" style="width:80px;" onclick="document.Formulario.target=&#39;_self&#39;"><i class="far fa-file-excel  iconsmall"></i> Exportar</button></td> </tr></tbody></table><table width="100%" border="0" cellspacing="0" cellpadding="0"><tbody><tr align="center"> <td align="center" class="MuestraError" style="font-size:1.5rem;font-weight:bold;"></td> </tr><tr align="center"> <td align="center" class="MuestraConf"><i class="fas fa-check-circle iconvsmallsp"></i> Los cambios se grabaron correctamente</td> </tr></tbody></table> 
+
+
+<table width="750" border="0" cellpadding="0" cellspacing="0" class="fondo">
+<!--asistentes-->
+<tbody><tr><td height="18"><i class="fa fa-users iconsmallsp iconlgray"></i> <strong>Asistentes:</strong></td></tr>
+<tr> <td align="center"><table width="750" border="0" cellspacing="0" cellpadding="0"><tbody><tr><td class="TablaTituloLeft"> </td><td width="20" class="TablaTituloDato"> </td><td class="TablaTituloLeft"> </td><td width="530" class="TablaTituloDato" style="font-weight:bold;"> Asistentes</td><td class="TablaTituloLeft"> </td><td width="160" class="TablaTituloDato"> Sector</td><td class="TablaTituloLeft"> </td><td width="40" class="TablaTituloDatoR"><button name="CmdAddA" type="submit" class="iconbtn" style="width:px;" title="Agregar" onclick="document.Formulario.target=&#39;_self&#39;"><i class="fas fa-folder-plus iconsmallbt iconlgray"></i> </button></td><td class="TablaTituloRight"> </td></tr><tr style="cursor:pointer;"><td class="TablaMostrarLeft"> </td><td class="TablaDato" onclick="location=&#39;ModificarAsistente.php?Flag1=True&amp;id=725&#39;" style="text-align:center;vertical-align:top"> 1</td><td class="TablaMostrarLeft"> </td><td class="TablaDato" onclick="location=&#39;ModificarAsistente.php?Flag1=True&amp;id=725&#39;"> AUN FELIX</td><td class="TablaMostrarLeft"> </td><td class="TablaDato" onclick="location=&#39;ModificarAsistente.php?Flag1=True&amp;id=725&#39;"> SGI</td><td class="TablaMostrarLeft"> </td><td class="TablaDatoR"><button name="CmdBorrarFilaA" type="submit" class="iconbtn" title="Eliminar" id="725" onclick="document.Formulario.TxtId.value=this.id;document.Formulario.target=&#39;_self&#39;;return confirm(&#39;Eliminar&#39;);" 0=""><i class="trash iconsmall fas fa-trash iconlgray"></i></button></td><td class="TablaMostrarRight"> </td></tr><tr style="cursor:pointer;"><td class="TablaMostrarLeft"> </td><td class="TablaDato" onclick="location=&#39;ModificarAsistente.php?Flag1=True&amp;id=726&#39;" style="text-align:center;vertical-align:top"> 2</td><td class="TablaMostrarLeft"> </td><td class="TablaDato" onclick="location=&#39;ModificarAsistente.php?Flag1=True&amp;id=726&#39;"> GIANNINI MARTIN</td><td class="TablaMostrarLeft"> </td><td class="TablaDato" onclick="location=&#39;ModificarAsistente.php?Flag1=True&amp;id=726&#39;"> OPERACIONES</td><td class="TablaMostrarLeft"> </td><td class="TablaDatoR"><button name="CmdBorrarFilaA" type="submit" class="iconbtn" title="Eliminar" id="726" onclick="document.Formulario.TxtId.value=this.id;document.Formulario.target=&#39;_self&#39;;return confirm(&#39;Eliminar&#39;);" 0=""><i class="trash iconsmall fas fa-trash iconlgray"></i></button></td><td class="TablaMostrarRight"> </td></tr><tr style="cursor:pointer;"><td class="TablaMostrarLeft"> </td><td class="TablaDato" onclick="location=&#39;ModificarAsistente.php?Flag1=True&amp;id=727&#39;" style="text-align:center;vertical-align:top"> 3</td><td class="TablaMostrarLeft"> </td><td class="TablaDato" onclick="location=&#39;ModificarAsistente.php?Flag1=True&amp;id=727&#39;"> MENARD NAZARENO ISAIAS</td><td class="TablaMostrarLeft"> </td><td class="TablaDato" onclick="location=&#39;ModificarAsistente.php?Flag1=True&amp;id=727&#39;"> OPERACIONES</td><td class="TablaMostrarLeft"> </td><td class="TablaDatoR"><button name="CmdBorrarFilaA" type="submit" class="iconbtn" title="Eliminar" id="727" onclick="document.Formulario.TxtId.value=this.id;document.Formulario.target=&#39;_self&#39;;return confirm(&#39;Eliminar&#39;);" 0=""><i class="trash iconsmall fas fa-trash iconlgray"></i></button></td><td class="TablaMostrarRight"> </td></tr><tr style="cursor:pointer;"><td class="TablaMostrarLeft"> </td><td class="TablaDato" onclick="location=&#39;ModificarAsistente.php?Flag1=True&amp;id=728&#39;" style="text-align:center;vertical-align:top"> 4</td><td class="TablaMostrarLeft"> </td><td class="TablaDato" onclick="location=&#39;ModificarAsistente.php?Flag1=True&amp;id=728&#39;"> LARA RIVERO GASTON IGNACIO</td><td class="TablaMostrarLeft"> </td><td class="TablaDato" onclick="location=&#39;ModificarAsistente.php?Flag1=True&amp;id=728&#39;"> SEGURIDAD</td><td class="TablaMostrarLeft"> </td><td class="TablaDatoR"><button name="CmdBorrarFilaA" type="submit" class="iconbtn" title="Eliminar" id="728" onclick="document.Formulario.TxtId.value=this.id;document.Formulario.target=&#39;_self&#39;;return confirm(&#39;Eliminar&#39;);" 0=""><i class="trash iconsmall fas fa-trash iconlgray"></i></button></td><td class="TablaMostrarRight"> </td></tr><tr style="cursor:pointer;"><td class="TablaMostrarLeft"> </td><td class="TablaDato" onclick="location=&#39;ModificarAsistente.php?Flag1=True&amp;id=729&#39;" style="text-align:center;vertical-align:top"> 5</td><td class="TablaMostrarLeft"> </td><td class="TablaDato" onclick="location=&#39;ModificarAsistente.php?Flag1=True&amp;id=729&#39;"> REYES DANIEL ULISES</td><td class="TablaMostrarLeft"> </td><td class="TablaDato" onclick="location=&#39;ModificarAsistente.php?Flag1=True&amp;id=729&#39;"> CONTROL DOCUMENTAL Y</td><td class="TablaMostrarLeft"> </td><td class="TablaDatoR"><button name="CmdBorrarFilaA" type="submit" class="iconbtn" title="Eliminar" id="729" onclick="document.Formulario.TxtId.value=this.id;document.Formulario.target=&#39;_self&#39;;return confirm(&#39;Eliminar&#39;);" 0=""><i class="trash iconsmall fas fa-trash iconlgray"></i></button></td><td class="TablaMostrarRight"> </td></tr><tr style="cursor:pointer;"><td class="TablaMostrarLeft"> </td><td class="TablaDato" onclick="location=&#39;ModificarAsistente.php?Flag1=True&amp;id=730&#39;" style="text-align:center;vertical-align:top"> 6</td><td class="TablaMostrarLeft"> </td><td class="TablaDato" onclick="location=&#39;ModificarAsistente.php?Flag1=True&amp;id=730&#39;"> RODRIGUEZ ANGELICA</td><td class="TablaMostrarLeft"> </td><td class="TablaDato" onclick="location=&#39;ModificarAsistente.php?Flag1=True&amp;id=730&#39;"> </td><td class="TablaMostrarLeft"> </td><td class="TablaDatoR"><button name="CmdBorrarFilaA" type="submit" class="iconbtn" title="Eliminar" id="730" onclick="document.Formulario.TxtId.value=this.id;document.Formulario.target=&#39;_self&#39;;return confirm(&#39;Eliminar&#39;);" 0=""><i class="trash iconsmall fas fa-trash iconlgray"></i></button></td><td class="TablaMostrarRight"> </td></tr></tbody></table>	</td></tr>
+<tr> <td height="15"></td></tr>
+<!--actividades des-->
+<tr><td height="18"><i class="fa fa-tasks iconsmallsp iconlgray"></i> <strong>Actividades Desarrolladas:</strong></td></tr>
+<tr> <td align="center"><table width="750" border="0" cellspacing="0" cellpadding="0"><tbody><tr><td class="TablaTituloLeft"> </td><td width="20" class="TablaTituloDato"> </td><td class="TablaTituloLeft"> </td><td width="690" class="TablaTituloDato" style="font-weight:bold;"> Actividades Desarrolladas</td><td class="TablaTituloLeft"> </td><td width="40" class="TablaTituloDatoR"><button name="CmdAddD" type="submit" class="iconbtn" style="width:px;" title="Agregar" onclick="document.Formulario.target=&#39;_self&#39;"><i class="fas fa-folder-plus iconsmallbt iconlgray"></i> </button></td><td class="TablaTituloRight"> </td></tr><tr style="cursor:pointer;"><td class="TablaMostrarLeft"> </td><td class="TablaDato" onclick="location=&#39;ModificarDesarrollo.php?Flag1=True&amp;id=208&#39;" style="text-align:center;vertical-align:top"> 1</td><td class="TablaMostrarLeft"> </td><td class="TablaDato" onclick="location=&#39;ModificarDesarrollo.php?Flag1=True&amp;id=208&#39;" style="white-space:normal;"> Puesta en común sobre actividades pendientes correspondientes a NC Nro 51</td><td class="TablaMostrarLeft"> </td><td class="TablaDatoR"><button name="CmdBorrarFilaD" type="submit" class="iconbtn" title="Eliminar" id="208" onclick="document.Formulario.TxtId.value=this.id;document.Formulario.target=&#39;_self&#39;;return confirm(&#39;Eliminar&#39;);" 0=""><i class="trash iconsmall fas fa-trash iconlgray"></i></button></td><td class="TablaMostrarRight"> </td></tr></tbody></table>	</td></tr>
+<tr> <td height="15"></td></tr>
+<!--actividades pend-->
+<tr><td height="18"><i class="fa fa-tasks iconsmallsp iconlgray"></i> <strong>Actividades Pendientes:</strong></td></tr>
+<tr> <td align="center"><table width="750" border="0" cellspacing="0" cellpadding="0"><tbody><tr><td class="TablaTituloLeft"> </td><td width="20" class="TablaTituloDato"> </td><td class="TablaTituloLeft"> </td><td width="500" class="TablaTituloDato" style="font-weight:bold;"> Actividades Pendientes</td><td class="TablaTituloLeft"> </td><td width="120" class="TablaTituloDato" style="font-weight:bold;"> Responsable</td><td class="TablaTituloLeft"> </td><td width="70" class="TablaTituloDato" style="font-weight:bold;"> Estado</td><td class="TablaTituloLeft"> </td><td width="40" class="TablaTituloDatoR"><button name="CmdAddP" type="submit" class="iconbtn" style="width:px;" title="Agregar" onclick="document.Formulario.target=&#39;_self&#39;"><i class="fas fa-folder-plus iconsmallbt iconlgray"></i> </button></td><td class="TablaTituloRight"> </td></tr><tr style="cursor:pointer;"><td class="TablaMostrarLeft"> </td><td class="TablaDato" onclick="location=&#39;ModificarPendiente.php?Flag1=True&amp;id=451&#39;" style="text-align:center;vertical-align:top"> 1</td><td class="TablaMostrarLeft"> </td><td class="TablaDato" onclick="location=&#39;ModificarPendiente.php?Flag1=True&amp;id=451&#39;" style="white-space:normal;"> Elaborar registro de cambio para "unidad lavaojos" y ducha de emergencia.</td><td class="TablaMostrarLeft"> </td><td class="TablaDato" onclick="location=&#39;ModificarPendiente.php?Flag1=True&amp;id=451&#39;"> AUN FELIX</td><td class="TablaMostrarLeft"> </td><td class="TablaDato" onclick="location=&#39;ModificarPendiente.php?Flag1=True&amp;id=451&#39;" style="color:#f44336;vertical-align:top"> Pendiente</td><td class="TablaMostrarLeft"> </td><td class="TablaDatoR"><input name="CmdConfFila" type="submit" class="botonseleccionar" title="Realizada" value="" id="451" onclick="document.Formulario.TxtId.value=this.id;">&nbsp;<button name="CmdBorrarFilaP" type="submit" class="iconbtn" title="Eliminar" id="451" onclick="document.Formulario.TxtId.value=this.id;document.Formulario.target=&#39;_self&#39;;return confirm(&#39;Eliminar&#39;);" 0=""><i class="trash iconsmall fas fa-trash iconlgray"></i></button></td><td class="TablaMostrarRight"> </td></tr><tr style="cursor:pointer;"><td class="TablaMostrarLeft"> </td><td class="TablaDato" onclick="location=&#39;ModificarPendiente.php?Flag1=True&amp;id=452&#39;" style="text-align:center;vertical-align:top"> 2</td><td class="TablaMostrarLeft"> </td><td class="TablaDato" onclick="location=&#39;ModificarPendiente.php?Flag1=True&amp;id=452&#39;" style="white-space:normal;"> Elaborar un plan de trabajo para organización de recipientes en planta.</td><td class="TablaMostrarLeft"> </td><td class="TablaDato" onclick="location=&#39;ModificarPendiente.php?Flag1=True&amp;id=452&#39;"> REYES DANIEL UL</td><td class="TablaMostrarLeft"> </td><td class="TablaDato" onclick="location=&#39;ModificarPendiente.php?Flag1=True&amp;id=452&#39;" style="color:#f44336;vertical-align:top"> Pendiente</td><td class="TablaMostrarLeft"> </td><td class="TablaDatoR"><input name="CmdConfFila" type="submit" class="botonseleccionar" title="Realizada" value="" id="452" onclick="document.Formulario.TxtId.value=this.id;">&nbsp;<button name="CmdBorrarFilaP" type="submit" class="iconbtn" title="Eliminar" id="452" onclick="document.Formulario.TxtId.value=this.id;document.Formulario.target=&#39;_self&#39;;return confirm(&#39;Eliminar&#39;);" 0=""><i class="trash iconsmall fas fa-trash iconlgray"></i></button></td><td class="TablaMostrarRight"> </td></tr><tr style="cursor:pointer;"><td class="TablaMostrarLeft"> </td><td class="TablaDato" onclick="location=&#39;ModificarPendiente.php?Flag1=True&amp;id=453&#39;" style="text-align:center;vertical-align:top"> 3</td><td class="TablaMostrarLeft"> </td><td class="TablaDato" onclick="location=&#39;ModificarPendiente.php?Flag1=True&amp;id=453&#39;" style="white-space:normal;"> Refrescar comunicación sobre "control de limpieza" de dispenser de agua con personal de maestranza </td><td class="TablaMostrarLeft"> </td><td class="TablaDato" onclick="location=&#39;ModificarPendiente.php?Flag1=True&amp;id=453&#39;"> RODRIGUEZ ANGEL</td><td class="TablaMostrarLeft"> </td><td class="TablaDato" onclick="location=&#39;ModificarPendiente.php?Flag1=True&amp;id=453&#39;" style="color:#f44336;vertical-align:top"> Pendiente</td><td class="TablaMostrarLeft"> </td><td class="TablaDatoR"><input name="CmdConfFila" type="submit" class="botonseleccionar" title="Realizada" value="" id="453" onclick="document.Formulario.TxtId.value=this.id;">&nbsp;<button name="CmdBorrarFilaP" type="submit" class="iconbtn" title="Eliminar" id="453" onclick="document.Formulario.TxtId.value=this.id;document.Formulario.target=&#39;_self&#39;;return confirm(&#39;Eliminar&#39;);" 0=""><i class="trash iconsmall fas fa-trash iconlgray"></i></button></td><td class="TablaMostrarRight"> </td></tr><tr style="cursor:pointer;"><td class="TablaMostrarLeft"> </td><td class="TablaDato" onclick="location=&#39;ModificarPendiente.php?Flag1=True&amp;id=454&#39;" style="text-align:center;vertical-align:top"> 4</td><td class="TablaMostrarLeft"> </td><td class="TablaDato" onclick="location=&#39;ModificarPendiente.php?Flag1=True&amp;id=454&#39;" style="white-space:normal;"> Publicar la nueva revisión de la política y colocar carteles en varios lugares de la Base operativa.</td><td class="TablaMostrarLeft"> </td><td class="TablaDato" onclick="location=&#39;ModificarPendiente.php?Flag1=True&amp;id=454&#39;"> AUN FELIX</td><td class="TablaMostrarLeft"> </td><td class="TablaDato" onclick="location=&#39;ModificarPendiente.php?Flag1=True&amp;id=454&#39;" style="color:#f44336;vertical-align:top"> Pendiente</td><td class="TablaMostrarLeft"> </td><td class="TablaDatoR"><input name="CmdConfFila" type="submit" class="botonseleccionar" title="Realizada" value="" id="454" onclick="document.Formulario.TxtId.value=this.id;">&nbsp;<button name="CmdBorrarFilaP" type="submit" class="iconbtn" title="Eliminar" id="454" onclick="document.Formulario.TxtId.value=this.id;document.Formulario.target=&#39;_self&#39;;return confirm(&#39;Eliminar&#39;);" 0=""><i class="trash iconsmall fas fa-trash iconlgray"></i></button></td><td class="TablaMostrarRight"> </td></tr><tr style="cursor:pointer;"><td class="TablaMostrarLeft"> </td><td class="TablaDato" onclick="location=&#39;ModificarPendiente.php?Flag1=True&amp;id=455&#39;" style="text-align:center;vertical-align:top"> 5</td><td class="TablaMostrarLeft"> </td><td class="TablaDato" onclick="location=&#39;ModificarPendiente.php?Flag1=True&amp;id=455&#39;" style="white-space:normal;"> Acondicionar tableros eléctricos</td><td class="TablaMostrarLeft"> </td><td class="TablaDato" onclick="location=&#39;ModificarPendiente.php?Flag1=True&amp;id=455&#39;"> BADILLA JORGE R</td><td class="TablaMostrarLeft"> </td><td class="TablaDato" onclick="location=&#39;ModificarPendiente.php?Flag1=True&amp;id=455&#39;" style="color:#f44336;vertical-align:top"> Pendiente</td><td class="TablaMostrarLeft"> </td><td class="TablaDatoR"><input name="CmdConfFila" type="submit" class="botonseleccionar" title="Realizada" value="" id="455" onclick="document.Formulario.TxtId.value=this.id;">&nbsp;<button name="CmdBorrarFilaP" type="submit" class="iconbtn" title="Eliminar" id="455" onclick="document.Formulario.TxtId.value=this.id;document.Formulario.target=&#39;_self&#39;;return confirm(&#39;Eliminar&#39;);" 0=""><i class="trash iconsmall fas fa-trash iconlgray"></i></button></td><td class="TablaMostrarRight"> </td></tr><tr style="cursor:pointer;"><td class="TablaMostrarLeft"> </td><td class="TablaDato" onclick="location=&#39;ModificarPendiente.php?Flag1=True&amp;id=456&#39;" style="text-align:center;vertical-align:top"> 6</td><td class="TablaMostrarLeft"> </td><td class="TablaDato" onclick="location=&#39;ModificarPendiente.php?Flag1=True&amp;id=456&#39;" style="white-space:normal;"> Realizar automatización de RCI</td><td class="TablaMostrarLeft"> </td><td class="TablaDato" onclick="location=&#39;ModificarPendiente.php?Flag1=True&amp;id=456&#39;"> MENARD NAZARENO</td><td class="TablaMostrarLeft"> </td><td class="TablaDato" onclick="location=&#39;ModificarPendiente.php?Flag1=True&amp;id=456&#39;" style="color:#f44336;vertical-align:top"> Pendiente</td><td class="TablaMostrarLeft"> </td><td class="TablaDatoR"><input name="CmdConfFila" type="submit" class="botonseleccionar" title="Realizada" value="" id="456" onclick="document.Formulario.TxtId.value=this.id;">&nbsp;<button name="CmdBorrarFilaP" type="submit" class="iconbtn" title="Eliminar" id="456" onclick="document.Formulario.TxtId.value=this.id;document.Formulario.target=&#39;_self&#39;;return confirm(&#39;Eliminar&#39;);" 0=""><i class="trash iconsmall fas fa-trash iconlgray"></i></button></td><td class="TablaMostrarRight"> </td></tr></tbody></table>	</td></tr>
+<tr> <td height="15"></td></tr>
+<!--Archivos-->
+<tr><td height="18"><i class="fa fa-paperclip iconsmallsp iconlgray"></i> <strong>Archivos adjuntos:</strong></td></tr>
+<tr> <td align="center"><table width="750" class="TableShow" id="tshow"><tbody><tr><td width="700" class="TableShowT"> Descripcion</td><td width="50" class="TableShowT TAR"><button name="CmdAddA1" type="submit" class="iconbtn" title="Agregar" id="0" onclick="document.Formulario.TxtId.value=this.id;document.Formulario.target=&#39;_self&#39;;" 0=""><i class="add iconsmall fas fa-folder-plus iconlgray"></i></button></td></tr></tbody></table>	</td></tr>
+</tbody></table>
+
+<input name="CmdLinkRow" type="submit" style="visibility:hidden" value=""><input name="CmdLinkRow1" type="submit" style="visibility:hidden" value=""><input name="CmdLinkRow2" type="submit" style="visibility:hidden" value=""><input name="CmdLinkRow3" type="submit" style="visibility:hidden" value=""><input name="CmdLinkRow4" type="submit" style="visibility:hidden" value=""><input name="CmdLinkRow5" type="submit" style="visibility:hidden" value=""><input name="CmdLinkRow6" type="submit" style="visibility:hidden" value=""><input name="CmdLinkRow7" type="submit" style="visibility:hidden" value=""><input name="CmdLinkRow8" type="submit" style="visibility:hidden" value=""><input name="CmdLinkRow9" type="submit" style="visibility:hidden" value=""><input name="CmdLinkRow10" type="submit" style="visibility:hidden" value=""><input name="CmdSalir" type="submit" style="visibility:hidden" value=""><input name="CmdManualIntra" type="submit" style="visibility:hidden" value=""><input name="GLO_getid" type="hidden" value=""><input name="GLO_getidp" type="hidden" value=""><input name="GLO_getidf" type="hidden" value=""></form>
+<!--fin contenedor-->  
+</td></tr></tbody></table>
+</td></tr>
+
+<!--footer-->   
+<tr><td class="footerUSR" colspan="2">
+FELIX AUN&nbsp; | &nbsp; SGI &nbsp;&nbsp;&nbsp;</td></tr>
+
+
+<!--fin tabla-->  
+</tbody></table>
+
+
+
+</body></html>

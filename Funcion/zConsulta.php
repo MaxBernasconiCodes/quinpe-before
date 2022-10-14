@@ -1,0 +1,17 @@
+<? include("../Codigo/Seguridad.php") ;include("../Codigo/Funciones.php");$_SESSION["NivelArbol"]="../";
+
+
+
+//perfiles
+GLO_PerfilAcceso(10);
+
+
+
+GLO_consultatablabasica('funcion','Funcion','Personal/Tablas',intval($_POST['TxtId']));
+
+
+
+?>
+
+
+
